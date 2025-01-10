@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% block title %}
+        <title>Quitanda da Fia</title>
+        {% endblock %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style_base.css' %}">
+    </head>
+
+    <body>
+        <header>
+            <div id="header-content">
+                <button id="logo-button-header">
+                    <img src="{% static 'img/logo.png' %}" alt="Logo da Quitanda da Fia">
+                </button>
+        
+                <div id="search-bar">
+                    <img src="{% static 'img/magnifier.png' %}" alt="Lupa do campo de pesquisa">
+                    <input @keyup.enter="performSearch" type="text" v-model="searchQuery" placeholder="Digite sua pesquisa">
+                    <button id="search-button">Buscar</button>
+                </div>
+
+                <div>
+                    <button id="sign-in-button">
+                        <img src="{% static 'img/sign-in_button.png' %}" alt="Botão para direcionar ao carrinho">
+                        {% comment %} Adicionar validação se está logado para definir se será esse ou Olá, Nome do Cliente {% endcomment %}
+                        Entre ou Cadastra-se
+                    </button>
+                </div>
+                
+                <div id="cart-info">
+                    <button id="cart-button">
+                        <img src="{% static 'img/cart_button.png' %}" alt="Botão para direcionar ao carrinho">
+                        Meu Carrinho
+                    </button>
+                </div>
+            </div>
+        
+            <nav id="categories">
+                <ul>
+                    <li><a href="#carne">Carne</a></li>
+                    <li><a href="#fruta">Fruta</a></li>
+                    <li><a href="#verdura">Verdura</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        {% if request.path == '/' %}
+            <div id="banner">
+                <div>
+                    <h2>Quitanda da Fia</h2>
+                    <p>A Quitanda da Fia, nossa unidade no bairro no Guará, 
+                        em Brasília, está em pleno funcionamento para receber a todos. 
+                        Além da qualidade e frescor que você já conhece, temos uma ampla variedade de frutas, 
+                        verduras e legumes frescos. Venha nos visitar e aproveite a experiência de uma quitanda completa 
+                        e cheia de qualidade!
+                    </p>
+                </div>
+                
+                <div>
+                    <img src="{% static 'img/logo.png' %}" alt="Logo da Quitanda da Fia">
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- default content text (typically empty) -->
+        {% block content %}
+        {% endblock %}
+
+        <div id="floating-icon">
+            <a href="https://wa.me/+5561998468405" target="_blank">
+              <img id="whatsapp-icon" src="{% static 'img/whatsapp.png' %}" alt="Entre em contato pelo nosso WhatsApp: (61) 99846-8405">
+            </a>
+        </div>
+
+        <footer>
+            <div id="map-footer">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15354.67248789388!2d-47.97755!3d-15.8214441!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a31fbaf04a2cb%3A0x90a20c40236d5cf4!2sQuitanda%20da%20Fia!5e0!3m2!1spt-BR!2sbr!4v1723405031912!5m2!1spt-BR!2sbr"></iframe>
+            </div>
+            
+            <div id="container-footer">
+                <div class="content-footer">
+                    <h2>Atendimento</h2>
+                    <div class="contact">
+                        <a href="tel:+556135327582" target="_blank">
+                            <img class="contact-icons" src="{% static 'img/telephone.png' %}" alt="Ligue para nós">
+                            <p>(61) 3532-7582</p>
+                        </a>
+                    </div>
+                    <p>Guará I QI 9 - Guará, Brasília - DF</p>
+                    <p>CEP: 70297-400</p>
+                </div>
+        
+                <div class="content-footer">
+                    <button id="logo-button-footer">
+                        <img src="{% static 'img/logo.png'%}" alt="Logo da Quitanda da Fia">
+                    </button>
+                    <p>Quitanda Da Fia &copy; 2025 - Todos os direitos reservados</p>
+                </div>
+        
+                <div class="content-footer">
+                    <h2>Redes Sociais</h2>
+                    <div class="contact">
+                        <a href="https://www.instagram.com/quitanda_dafia/" target="_blank">
+                            <img class="contact-icons" src="{% static 'img/instagram.png' %}" alt="Instagram">
+                            <p>@quitanda_dafia</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,242 @@
+@import url('https://fonts.cdnfonts.com/css/rawline');
+
+p, h1, h2, h3 {
+    font-family: 'Rawline', sans-serif;                                              
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+Header, Footer {
+    z-index: 2;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #264B37;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Customize logo_button-header and logo image size */
+#logo-button-header {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #264B37;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#logo-button-header img {
+    width: 20em;
+}
+
+/* Customize the arrangement of header elements */
+#header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    gap: 6em;
+    margin-bottom: -3.2em;
+}
+
+/* Customize search bar */
+#search-bar {
+    background-color: #ffffff;
+    padding: 0.7em 2em 0.7em 2em;
+    border-radius: 3em;
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+}
+
+/* Customize magnifier image */
+#search-bar img {
+    width: 1.5em;
+}
+
+/* Customize input text */
+input {
+    border: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    opacity: 0.7;
+    outline: none;
+}
+
+/* Customize search button "Buscar" */
+#search-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #264B37;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#search-button:hover {
+    opacity: 0.8;
+}
+
+/* Customize button to be done within the image limits */
+#cart-button, #sign-in-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+/* Customize categories */
+#categories {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    align-items: center;
+}
+
+.category {
+    display: flex;
+    padding: 1em 3em 1em 3em;
+    font-size: 1.6em;
+}
+
+/* BANNER to base.html */
+#banner {
+    background-color: #264B37;
+    border-radius: 8px;
+    height: 250px;
+    display: flex;
+    padding: 1em 10em 1em 13em;
+    margin: 1em 0 1em 0;
+    justify-content: space-between;
+    align-content: center;
+    gap: 15em;
+}
+
+#banner p, #banner h2 {
+    color: #ffffff;
+}
+
+#banner h2 {
+    padding-bottom: 1em;
+}
+
+#banner img {
+    padding: 2em;
+    width: 18em;
+}
+
+/* FOOTER to base.html */
+iframe {
+    width: 100%;
+}
+
+/* Customize the container_footer */
+#container-footer {
+    background-color: #264B37;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 13em 1em 13em;
+    align-items: flex-start;
+}
+
+/* Customize the text color of h2 and p */
+#container-footer h2, #container-footer p {
+    color: #ffffff;
+}
+
+#container-footer p {
+    font-size: 1em;
+}
+
+/* Customize when there is icon and text together */
+.contact {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    font-size: 1.1em;
+    gap: 1em;
+}
+
+.contact-text {
+    font-size: 3rem;
+}
+
+/* Customize icon sizes */
+.contact-icons {
+    width: 3em;
+}
+
+/* Customize logo button to home page */
+#logo-button-footer {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #264B37;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+#logo-button-footer img {
+    width: 18em;
+}
+
+/* Customize logo size */
+#container-footer a:hover, #logo-button-footer:hover, #cart-button:hover, #sign-in-button:hover, #logo-button-header:hover, #whatsapp-icon:hover {
+  opacity: 0.6;
+}
+
+#container-footer a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-size: 0.8em;
+}
+
+.content-footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* Floating WhatsApp Icon */
+#floating-icon {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 1;
+}
+
+#whatsapp-icon {
+    position: fixed;
+    bottom: 1em;
+    right: 0.6em;
+    width: 5em;
+    height: 5em;
+    z-index: 999;
+    cursor: pointer;
+}
