@@ -40,31 +40,11 @@
             </div>
         
             <nav id="categories">
-                <ul>
-                    <li><a href="#carne">Carne</a></li>
-                    <li><a href="#fruta">Fruta</a></li>
-                    <li><a href="#verdura">Verdura</a></li>
-                </ul>
+                {% for category in categories%}
+                    <a href="" id="category" target="_blank">{{ category.name }}</a>
+                {% endfor %}
             </nav>
         </header>
-
-        {% if request.path == '/' %}
-            <div id="banner">
-                <div>
-                    <h2>Quitanda da Fia</h2>
-                    <p>A Quitanda da Fia, nossa unidade no bairro no Guará, 
-                        em Brasília, está em pleno funcionamento para receber a todos. 
-                        Além da qualidade e frescor que você já conhece, temos uma ampla variedade de frutas, 
-                        verduras e legumes frescos. Venha nos visitar e aproveite a experiência de uma quitanda completa 
-                        e cheia de qualidade!
-                    </p>
-                </div>
-                
-                <div>
-                    <img src="{% static 'img/logo.png' %}" alt="Logo da Quitanda da Fia">
-                </div>
-            </div>
-        {% endif %}
 
         <!-- default content text (typically empty) -->
         {% block content %}

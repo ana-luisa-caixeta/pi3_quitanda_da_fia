@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div id="banner">
+        <div>
+            <h2>Quitanda da Fia</h2>
+            <p>A Quitanda da Fia, nossa unidade no bairro no Guará, 
+                em Brasília, está em pleno funcionamento para receber a todos. 
+                Além da qualidade e frescor que você já conhece, temos uma ampla variedade de frutas, 
+                verduras e legumes frescos. Venha nos visitar e aproveite a experiência de uma quitanda completa 
+                e cheia de qualidade!
+            </p>
+        </div>
+        
+        <div>
+            <img src="{% static 'img/logo.png' %}" alt="Logo da Quitanda da Fia">
+        </div>
+    </div>
+
+    <div id="category_products">
+        <!-- Organize the section by categories -->
+        {% for category in categories%}
+            <div id="division-by-category">
+                <h2>{{ category.name }}</h2>
+                
+                <!-- Organize all products within your category -->
+                <div id="products_by_category">
+
+                    <!-- Product card construction-->
+                    {% for product in products %}
+                        {% if product.category == category %}
+                            <div id="product_card">
+                                <img src="{{ product.image }}" :alt="Nome do produto"/>  <!-- Adicionado o @click -->
+
+                                <div id="product_information">
+                                    <p>{{ product.name }} - {{ product.unit }}</p>
+                                    <p>R${{ product.price }}</p>
+                                </div>
+
+                                <button id="add_to_cart">
+                                    <div id="cart_component">
+                                        <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras"/>
+                                        <p>Adicionar</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- This button is responsible for limiting how many products the user can see -->
+                <div id="division_of_categories">
+                    <button>
+                        Veja mais
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Modal para exibir detalhes do produto -->
+    </div>
+{% endblock %}
