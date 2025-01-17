@@ -10,3 +10,11 @@ def home(request):
 
 def shopping_cart(request):
     return render(request, "base/shopping_cart.html")
+
+
+def login(request):
+    return render(request, "base/login.html")
+
+
+def cadastro(request):
+    return render(request, "base/register.html")

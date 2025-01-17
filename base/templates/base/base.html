@@ -13,9 +13,9 @@
     <body>
         <header>
             <div id="header-content">
-                <button id="logo-button-header">
+                <a href="{% url 'home' %}" id="logo-button-header">
                     <img src="{% static 'img/logo.png' %}" alt="Logo da Quitanda da Fia">
-                </button>
+                </a>
         
                 <div id="search-bar">
                     <img src="{% static 'img/magnifier.png' %}" alt="Lupa do campo de pesquisa">
@@ -24,18 +24,17 @@
                 </div>
 
                 <div>
-                    <button id="sign-in-button">
+                    <a href="{% url 'login' %}" id="sign-in-button">
                         <img src="{% static 'img/sign-in_button.png' %}" alt="Botão para direcionar ao carrinho">
-                        {% comment %} Adicionar validação se está logado para definir se será esse ou Olá, Nome do Cliente {% endcomment %}
                         Entre ou Cadastra-se
-                    </button>
+                    </a>
                 </div>
                 
                 <div id="cart-info">
-                    <button id="cart-button">
+                    <a href="{% url 'carrinho' %}" id="cart-button">
                         <img src="{% static 'img/cart_button.png' %}" alt="Botão para direcionar ao carrinho">
                         Meu Carrinho
-                    </button>
+                    </a>
                 </div>
             </div>
         
@@ -75,9 +74,9 @@
                 </div>
         
                 <div class="content-footer">
-                    <button id="logo-button-footer">
-                        <img src="{% static 'img/logo.png'%}" alt="Logo da Quitanda da Fia">
-                    </button>
+                    <a href="{% url 'home' %}" id="logo-button-foote">
+                        <img src="{% static 'img/logo.png' %}" alt="Logo da Quitanda da Fia">
+                    </a>
                     <p>Quitanda Da Fia &copy; 2025 - Todos os direitos reservados</p>
                 </div>
         

@@ -101,6 +101,7 @@ input {
     align-items: center;
     justify-content: space-between;
     gap: 1em;
+    text-decoration: none;
 }
 
 /* Customize categories */
