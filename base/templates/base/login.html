@@ -3,4 +3,35 @@
 {% load static %}
 
 {% block content %}
+<div id="login-block">
+    <h2>Acesso ao sistema</h2>
+
+    <p>Email</p>
+    <div id="login-email">
+        <p>Boneco</p>
+        <p>campo</p>
+        <p>Olho</p>
+    </div>
+    <p>Digite o e-mail cadastrado</p>
+
+    <p>Senha</p>
+    <div id="login-senha">
+        <p>Cadeado</p>
+        <p>*********</p>
+        <p></p>
+    </div>
+    <p>Digite a sua senha de segurança</p>
+
+    <p>Esqueceu a senha?</p>
+
+    <div id="login-button-sign-in">
+        <button>Entrar</button>
+    </div>
+
+    <div>
+        <a href="{% url 'cadastro' %}" id="login-to-register">
+            Não possui conta? Registre-se
+        </a>
+    </div>
+</div>
 {% endblock %}

@@ -3,4 +3,45 @@
 {% load static %}
 
 {% block content %}
+<div>
+    <h2>Cadastro ao sistema</h2>
+
+    <div id="register-name">
+        <p>Nome</p>
+        <p>Campo</p>
+        <p>Digite seu nome completo</p>
+    </div>
+
+    <div class="register-email">
+        <p>Email</p>
+        <p>Campo</p>
+        <p>Digite o email para cadastrar</p>
+    </div>
+
+    <div class="register-email">
+        <p>Campo</p>
+        <p>Repita o email cadastrado</p>
+    </div>
+
+    <div>
+        <p>Senha</p>
+        <p>Campo</p>
+        <p>Digite sua senha de segurança</p>
+
+        <div>
+            <p>Campo</p>
+            <p>Repita a senha informada</p>
+        </div>
+    </div>
+
+    <div id="login-button-sign-in">
+        <button>Cadastrar</button>
+    </div>
+
+    <div>
+        <a href="{% url 'login' %}" id="login-to-register">
+            Já possui conta? Faça o login
+        </a>
+    </div>
+</div>
 {% endblock %}

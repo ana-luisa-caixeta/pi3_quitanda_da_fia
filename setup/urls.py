@@ -23,5 +23,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('carrinho/', shopping_cart, name='carrinho'),
     path('login/', login, name='login'),
-    path('cadastro/', login, name='cadastro'),
+    path('cadastro/', cadastro, name='cadastro'),
 ]
