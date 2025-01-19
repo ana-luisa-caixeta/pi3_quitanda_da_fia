@@ -6,32 +6,40 @@
 <div id="login-block">
     <h2>Acesso ao sistema</h2>
 
-    <p>Email</p>
-    <div id="login-email">
-        <p>Boneco</p>
-        <p>campo</p>
-        <p>Olho</p>
-    </div>
-    <p>Digite o e-mail cadastrado</p>
+    <form>
+        {% csrf_token %}
 
-    <p>Senha</p>
-    <div id="login-senha">
-        <p>Cadeado</p>
-        <p>*********</p>
-        <p></p>
-    </div>
-    <p>Digite a sua senha de segurança</p>
+        <!-- Campo Email -->
+        <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Ex. exemplo@exemplo.com.br" required>
+        </div>
 
-    <p>Esqueceu a senha?</p>
+        <!-- Campo Senha -->
+        <div class="form-field">
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha de segurança" required>
+        </div>
 
-    <div id="login-button-sign-in">
-        <button>Entrar</button>
-    </div>
+        <!-- Link para Esqueceu a Senha -->
+        <div class="form-field">
+            <a  id="forgot-password">
+                Esqueceu a senha?
+            </a>
+        </div>
 
+        <!-- Botão de Login -->
+        <div id="login-button-sign-in">
+            <button type="submit">Entrar</button>
+        </div>
+    </form>
+
+    <!-- Link para Cadastro -->
     <div>
         <a href="{% url 'cadastro' %}" id="login-to-register">
             Não possui conta? Registre-se
         </a>
     </div>
 </div>
+
 {% endblock %}
