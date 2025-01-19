@@ -22,7 +22,7 @@
     <div id="category_products">
         <!-- Organize the section by categories -->
         {% for category in categories%}
-            <div id="division-by-category">
+            <div id="{{ category.name|lower|slugify }}" id="division-by-category">
                 <h2>{{ category.name }}</h2>
                 
                 <!-- Organize all products within your category -->

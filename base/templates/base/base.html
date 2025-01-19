@@ -18,9 +18,14 @@
                 </a>
         
                 <div id="search-bar">
-                    <img src="{% static 'img/magnifier.png' %}" alt="Lupa do campo de pesquisa">
-                    <input @keyup.enter="performSearch" type="text" v-model="searchQuery" placeholder="Digite sua pesquisa">
-                    <button id="search-button">Buscar</button>
+                    <form action="{% url 'busca' %}" method="get" id="search-bar-content">
+                        <img src="{% static 'img/magnifier.png' %}" alt="Lupa do campo de pesquisa">
+                        <input 
+                            type="text" 
+                            name="q" 
+                            placeholder="Digite sua pesquisa">
+                        <button id="search-button">Buscar</button>
+                    </form>
                 </div>
 
                 <div>
@@ -40,7 +45,7 @@
         
             <nav id="categories">
                 {% for category in categories%}
-                    <a href="" id="category" target="_blank">{{ category.name }}</a>
+                    <a href="#{{ category.name|lower|slugify }}" id="category">{{ category.name }}</a>
                 {% endfor %}
             </nav>
         </header>
@@ -62,7 +67,7 @@
             
             <div id="container-footer">
                 <div class="content-footer">
-                    <h2>Atendimento</h2>
+                    <h3>Atendimento</h3>
                     <div class="contact">
                         <a href="tel:+556135327582" target="_blank">
                             <img class="contact-icons" src="{% static 'img/telephone.png' %}" alt="Ligue para nós">
@@ -74,14 +79,14 @@
                 </div>
         
                 <div class="content-footer">
-                    <a href="{% url 'home' %}" id="logo-button-foote">
+                    <a href="{% url 'home' %}" id="logo-button-footer">
                         <img src="{% static 'img/logo.png' %}" alt="Logo da Quitanda da Fia">
                     </a>
                     <p>Quitanda Da Fia &copy; 2025 - Todos os direitos reservados</p>
                 </div>
         
                 <div class="content-footer">
-                    <h2>Redes Sociais</h2>
+                    <h3>Redes Sociais</h3>
                     <div class="contact">
                         <a href="https://www.instagram.com/quitanda_dafia/" target="_blank">
                             <img class="contact-icons" src="{% static 'img/instagram.png' %}" alt="Instagram">

@@ -13,7 +13,7 @@ Header, Footer {
 }
 
 body {
-    margin: 0;
+    margin: 1;
 }
 
 header {
@@ -31,12 +31,10 @@ header {
     margin: 0;
     cursor: pointer;
     color: #264B37;
-    font-size: 1.1em;
-    font-weight: bold;
 }
 
 #logo-button-header img {
-    width: 20em;
+    width: 15em;
 }
 
 /* Customize the arrangement of header elements */
@@ -45,18 +43,21 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1em;
-    gap: 6em;
     margin-bottom: -3.2em;
 }
 
 /* Customize search bar */
 #search-bar {
     background-color: #ffffff;
-    padding: 0.7em 2em 0.7em 2em;
+    padding: 0.6em 3.5em 0.6em 3.5em;
     border-radius: 3em;
+}
+
+#search-bar-content {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 1.5em;
+    gap: 1.6em;
 }
 
 /* Customize magnifier image */
@@ -100,8 +101,16 @@ input {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1em;
+    gap: 0.8em;
     text-decoration: none;
+}
+
+#cart-button img {
+    width: 3.5em;
+}
+
+#sign-in-button img {
+    width: 3em;
 }
 
 /* Customize categories */
@@ -114,36 +123,29 @@ input {
 
 #category {
     display: flex;
-    padding: 1em 3em 1em 3em;
-    font-size: 1.3em;
+    padding: 1em 3em 0em 3em;
+    font-size: 1.5em;
     color: #ffffff;
     text-decoration: none;
-    font-size: bold;
+    font-weight: bolder;
 }
 
 /* BANNER to base.html */
 #banner {
     background-color: #264B37;
     border-radius: 8px;
-    height: 250px;
     display: flex;
-    padding: 1em 10em 1em 13em;
     margin: 1em 0 1em 0;
-    justify-content: space-between;
-    align-content: center;
-    gap: 15em;
+    padding: 1em;
+    gap: 10em;
 }
 
 #banner p, #banner h2 {
     color: #ffffff;
-}
-
-#banner h2 {
-    padding-bottom: 1em;
+    text-align: justify;
 }
 
 #banner img {
-    padding: 2em;
     width: 18em;
 }
 
@@ -159,36 +161,30 @@ iframe {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    padding: 1em 13em 1em 13em;
+    padding: 1em;
     align-items: flex-start;
 }
 
 /* Customize the text color of h2 and p */
-#container-footer h2, #container-footer p {
+#container-footer h3, #container-footer p {
     color: #ffffff;
 }
 
 #container-footer p {
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 /* Customize when there is icon and text together */
-.contact {
+.content-footer {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center; 
-    font-size: 1.1em;
-    gap: 1em;
-}
-
-.contact-text {
-    font-size: 3rem;
 }
 
 /* Customize icon sizes */
 .contact-icons {
-    width: 3em;
+    width: 2em;
 }
 
 /* Customize logo button to home page */
@@ -199,12 +195,10 @@ iframe {
     margin: 0;
     cursor: pointer;
     color: #264B37;
-    font-size: 1.1em;
-    font-weight: bold;
 }
 
 #logo-button-footer img {
-    width: 18em;
+    width: 15em;
 }
 
 /* Customize logo size */
@@ -216,19 +210,11 @@ iframe {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 1em;
-    font-size: 0.8em;
-}
-
-.content-footer {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+    gap: 0.8em;
 }
 
 /* Floating WhatsApp Icon */
 #floating-icon {
-    max-width: 1400px;
     margin: 0 auto;
     background-color: #ffffff;
     position: relative;
@@ -239,8 +225,8 @@ iframe {
     position: fixed;
     bottom: 1em;
     right: 0.6em;
-    width: 5em;
-    height: 5em;
+    width: 3em;
+    height: 3em;
     z-index: 999;
     cursor: pointer;
 }

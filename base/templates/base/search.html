@@ -3,35 +3,38 @@
 
 {% block content %}
 <!-- Se encontrar produtos -->
-<div id="product_found" v-if="searchResults.length > 0">
-    <h2>Resultados da Pesquisa:</h2>
+{% if results %}
+    <h2>Resultados da Pesquisa: "{{ query }}"</h2>
     <div id="order_products">
-        <div id="product_card" v-for="(product, index) in searchResults" :key="index" class="product">
-            <img :src="product.photo" :alt="product.name" @click="openModal(product)" />
+        <div id="product_card" class="product">
+            {% for product in results%}
+                <img src="{{ product.photo }}" alt="{{ product.name }}">
 
-            <div id="product_information">
-                <p id="product">{{ product.name }} - {{ product.unit }}</p>
-                <p>R${{ product.price }}</p>
-            </div>
-
-            <button id="add_to_cart" @click="addToCart(product)">
-                <div id="cart_component">
-                    <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras"/>
-                    <p>Adicionar</p>
+                <div id="product_information">
+                    <p id="product">{{ product.name }} - {{ product.unit }}</p>
+                    <p>R${{ product.price }}</p>
                 </div>
-            </button>
+
+                <button id="add_to_cart">
+                    <div id="cart_component">
+                        <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras"/>
+                        <p>Adicionar</p>
+                    </div>
+                </button>
+            {% endfor %}
         </div>
     </div>
-</div>
 
-<!-- Se não encontrar produtos -->
-<div v-else id="no_product_found">
-    <h2>Nenhum produto encontrado para a pesquisa "{{ searchTerm ? searchTerm : '' }}"</h2>
-    <div>
-        <button class="home_page" @click="goToHomePage">
-            <img src="{% static 'img/return.png' %}" alt="Seta para voltar à tela inicial">
-            <p>Volte para página inicial</p>
-        </button>
+{% else %}
+    <!-- Se não encontrar produtos -->
+    <div v-else id="no_product_found">
+        <h2>Nenhum produto encontrado para a pesquisa "{{ query }}"</h2>
+        <div>
+            <a href="{% url 'home' %}" class="home_page">
+                <img src="{% static 'img/return.png' %}" alt="Seta para voltar à tela inicial">
+                <p>Volte para página inicial</p>
+            </a>
+        </div>
     </div>
-</div>
+{% endif %}
 {% endblock %}

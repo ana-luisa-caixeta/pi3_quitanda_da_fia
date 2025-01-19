@@ -18,3 +18,15 @@ def login(request):
 
 def cadastro(request):
     return render(request, "base/register.html")
+
+
+def busca(request):
+    query = request.GET.get('q', '')
+    results = Product.objects.filter(name__icontains=query) if query else []
+
+    context = {
+        'query': query,
+        'results': results,
+    }
+
+    return render(request, "base/search.html", context)
