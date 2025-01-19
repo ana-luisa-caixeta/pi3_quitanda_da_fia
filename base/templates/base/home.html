@@ -5,7 +5,7 @@
 {% block content %}
     <div id="banner">
         <div>
-            <h2>Quitanda da Fia</h2>
+            <h3>Quitanda da Fia</h3>
             <p>A Quitanda da Fia, nossa unidade no bairro no Guará, 
                 em Brasília, está em pleno funcionamento para receber a todos. 
                 Além da qualidade e frescor que você já conhece, temos uma ampla variedade de frutas, 
@@ -24,28 +24,24 @@
         {% for category in categories%}
             <div id="{{ category.name|lower|slugify }}" id="division-by-category">
                 <h2>{{ category.name }}</h2>
-                
-                <!-- Organize all products within your category -->
-                <div id="products_by_category">
 
-                    <!-- Product card construction-->
-                    {% for product in products %}
-                        {% if product.category == category %}
-                            <div id="product_card">
-                                <img src="{{ product.image }}" :alt="Nome do produto"/>  <!-- Adicionado o @click -->
+                <!-- Product card construction-->
+                {% for product in products %}
+                    {% if product.category == category %}
+                        <div id="product_card">
+                            <img src="{{ product.image }}" :alt="Nome do produto"/>
 
-                                <div id="product_information">
-                                    <p>{{ product.name }} - {{ product.unit }}</p>
-                                    <p>R${{ product.price }}</p>
-                                </div>
-
-                                <button id="add_to_cart">
-                                    <div id="cart_component">
-                                        <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras"/>
-                                        <p>Adicionar</p>
-                                    </div>
-                                </button>
+                            <div id="product_information">
+                                <p>{{ product.name }} - {{ product.unit }}</p>
+                                <p>R${{ product.price }}</p>
                             </div>
+
+                            <button id="add_to_cart">
+                                <div id="cart_component">
+                                    <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras"/>
+                                    <p>Adicionar</p>
+                                </div>
+                            </button>
                         </div>
                     {% endif %}
                 {% endfor %}
