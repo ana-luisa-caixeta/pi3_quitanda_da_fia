@@ -9,16 +9,16 @@
             <div id="no_product_added">
                 <h2>Nenhum produto adicionado no seu carrinho!</h2>
                 <div>
-                    <button class="home_page">
+                    <a href="{% url 'home' %}" class="home_page">
                         <img src="{% static 'img/return.png' %}" alt="Seta para voltar à tela inicial">
                         <p>Comece a escolher</p>
-                    </button>
+                    </a>
                 </div>
             </div>
 
             <div class="product_added">
                 <img id="product_image" :src="item.photo" :alt="'Imagem do produto ' + item.name">
-                <div id="product_information">
+                <div id="product_information_shopping_cart">
                     <p class="text_green">Nome</p>
                     <p class="text_gray">Unidade</p>
                     <p class="text_green">Preço</p>
@@ -40,7 +40,7 @@
         <div id="order_information">
             <form action="">
                 <label class="main_label" for="name">Nome</label>
-                <input type="text" id="name" placeholder="Digite seu nome" v-model="name" required>
+                <input type="text" class="input-text-shopping-cart" id="name" placeholder="Digite seu nome" v-model="name" required>
 
                 <label class="main_label" for="tel_number">Telefone de contato</label>
                 <input type="tel" id="tel_number" placeholder="(99)99999-9999" v-model="tel_number" required>
@@ -72,7 +72,7 @@
 
                     <div v-if="delivery === 'delivery'">
                         <label for="address">Endereço da entrega</label>
-                        <input type="text" name="address" id="address" v-model="address" placeholder="Digite o endereço da entrega">
+                        <input type="text" class="input-text-shopping-cart" name="address" id="address" v-model="address" placeholder="Digite o endereço da entrega">
                     </div>
                 </div>
             </form>
