@@ -36,12 +36,15 @@
                                 <p>R${{ product.price }}</p>
                             </div>
 
-                            <button id="add_to_cart">
-                                <div id="cart_component">
-                                    <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras"/>
-                                    <p>Adicionar</p>
-                                </div>
-                            </button>
+                            <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <button id="add_to_cart" type="submit">
+                                    <div id="cart_component">
+                                        <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras">
+                                        <p>Adicionar</p>
+                                    </div>
+                                </button>
+                            </form>                            
                         </div>
                     {% endif %}
                 {% endfor %}

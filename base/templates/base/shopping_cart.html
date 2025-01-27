@@ -6,34 +6,54 @@
     <div id="container">
         <!-- Left side: responsible for showing the user the selected products -->
         <div id="ordered_products">
-            <div id="no_product_added">
-                <h2>Nenhum produto adicionado no seu carrinho!</h2>
-                <div>
-                    <a href="{% url 'home' %}" class="shopping_cart_to_home_page">
-                        <img src="{% static 'img/return.png' %}" alt="Seta para voltar à tela inicial">
-                        <p>Comece a escolher</p>
-                    </a>
-                </div>
-            </div>
+            {% if items %}
+                {% for item in items %}
+                    <div class="product_added">
+                        <!-- Product image -->
+                        <img id="product_image" src="{{ item.product.image }}" alt="Imagem do produto {{ item.product.name }}">
 
-            <div class="product_added">
-                <img id="product_image" :src="item.photo" :alt="'Imagem do produto ' + item.name">
-                <div id="product_information_shopping_cart">
-                    <p class="text_green">Nome</p>
-                    <p class="text_gray">Unidade</p>
-                    <p class="text_green">Preço</p>
-                </div>
+                        <!-- Product information -->
+                        <div id="product_information_shopping_cart">
+                            <p class="text_green">{{ item.product.name }}</p>
+                            <p class="text_gray">{{ item.quantity }}</p>
+                            <p class="text_green">R${{ item.product.price|floatformat:2 }}</p>
+                        </div>
 
-                <div id="amount">
-                    <button>
-                        <img src="{% static 'img/subtraction.png' %}" alt="Reduzir quantidade">
-                    </button>
-                    <p>quantidade</p>
-                    <button>
-                        <img src="{% static 'img/sum.png' %}" alt="Aumentar quantidade">
-                    </button>
+                        <!-- Quantity adjustment -->
+                        <div id="amount">
+                            <!-- Decrease quantity -->
+                            <form method="POST" action="{% url 'remove_from_cart' item.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn_adjust_quantity">
+                                    <img src="{% static 'img/subtraction.png' %}" alt="Reduzir quantidade">
+                                </button>
+                            </form>
+
+                            <!-- Current quantity -->
+                            <p class="current_quantity">{{ item.quantity }}</p>
+
+                            <!-- Increase quantity -->
+                            <form method="POST" action="{% url 'add_to_cart' item.product.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn_adjust_quantity">
+                                    <img src="{% static 'img/sum.png' %}" alt="Aumentar quantidade">
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <!-- Empty cart message -->
+                <div id="no_product_added">
+                    <h2>Nenhum produto adicionado no seu carrinho!</h2>
+                    <div>
+                        <a href="{% url 'home' %}" class="shopping_cart_to_home_page">
+                            <img src="{% static 'img/return.png' %}" alt="Seta para voltar à tela inicial">
+                            <p>Comece a escolher</p>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
 
         <!-- Right side: responsible for showing the form and confirming the order -->
@@ -80,7 +100,7 @@
             <h2>Resumo da compra</h2>
             <div class="elements_side_by_side">
                 <p>Subtotal</p>
-                <p>R$</p>
+                <p>R$ {{ total|floatformat:2 }}</p>
             </div>
 
             <div class="elements_side_by_side">
@@ -90,13 +110,13 @@
 
             <div class="elements_side_by_side">
                 <h3>Total</h3>
-                <h3>R$</h3>
+                <h3>R$ {{ total|floatformat:2 }}</h3>
             </div>
 
             <div class="elements_side_by_side">
-                <button class="shopping_cart_to_home_page">
-                        Continue comprando
-                </button>
+                <a href="{% url 'home' %}" class="shopping_cart_to_home_page">
+                    <p>Continue comprando</p>
+                </a>
 
                 <button id="finalize_order">
                     Finalizar pedido

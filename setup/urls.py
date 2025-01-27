@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from base.views import home, shopping_cart, login, cadastro, busca
+from base.views import home, shopping_cart, login, cadastro, busca, add_to_cart, remove_from_cart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('carrinho/', shopping_cart, name='carrinho'),
+    path('cart/add/<str:product_id>/', add_to_cart, name='add_to_cart'),
+    path('cart/remove/<uuid:item_id>/', remove_from_cart, name='remove_from_cart'),
     path('login/', login, name='login'),
     path('cadastro/', cadastro, name='cadastro'),
     path('busca/', busca, name='busca')
