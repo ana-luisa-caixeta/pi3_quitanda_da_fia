@@ -6,19 +6,25 @@
 <div id="login-block">
     <h2>Acesso ao sistema</h2>
 
-    <form>
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            Seu nome de usuário e senha não coincidem. Por favor, tente novamente.
+        </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}" >
         {% csrf_token %}
 
         <!-- Campo Email -->
         <div class="form-field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Ex. exemplo@exemplo.com.br" required>
+            <label for="id_username">Usuário</label>
+            <input type="text" id="id_username" name="username" placeholder="Ex. exemplo@exemplo.com.br" required autofocus>
         </div>
 
         <!-- Campo Senha -->
         <div class="form-field">
-            <label for="password">Senha</label>
-            <input type="password" id="password" name="password" placeholder="Digite sua senha de segurança" required>
+            <label for="id_password">Senha</label>
+            <input type="password" id="id_password" name="password" placeholder="Digite sua senha de segurança" required>
         </div>
 
         <!-- Link para Esqueceu a Senha -->

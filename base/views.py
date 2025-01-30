@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Category, Product, ShoppingCart, CartItem
 
 # Create your views here.
@@ -9,10 +10,7 @@ def home(request):
     return render(request, "base/home.html", {'categories' : categories, 'products': products})
 
 
-from django.shortcuts import render
-from .models import ShoppingCart, CartItem  # Certifique-se de importar os modelos corretos
-
-
+@login_required(login_url='login')
 def shopping_cart(request):
     # Recuperar o carrinho de compras do usuário logado
     cart = ShoppingCart.objects.filter(user=request.user, deleted_at__isnull=True).first()
@@ -32,6 +30,7 @@ def shopping_cart(request):
     return render(request, 'base/shopping_cart.html', {'cart': cart, 'items': items, 'total': total, 'categories': categories})
 
 
+@login_required(login_url='login')
 def add_to_cart(request, product_id):
     if request.method == "POST":
         quantity = int(request.POST.get('quantity', 1))
@@ -48,6 +47,7 @@ def add_to_cart(request, product_id):
         return redirect('carrinho')
 
 
+@login_required(login_url='login')
 def remove_from_cart(request, item_id):
     if request.method == 'POST':
         # Busca o CartItem pelo ID
@@ -65,11 +65,11 @@ def remove_from_cart(request, item_id):
 
 
 def login(request):
-    return render(request, "base/login.html", {'categories' : categories})
+    return render(request, "registration/login.html", {'categories' : categories})
 
 
 def cadastro(request):
-    return render(request, "base/register.html", {'categories' : categories})
+    return render(request, "registration/register.html", {'categories' : categories})
 
 
 def busca(request):

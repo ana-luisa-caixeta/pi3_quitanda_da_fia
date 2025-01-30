@@ -30,10 +30,24 @@
                 </div>
 
                 <div>
-                    <a href="{% url 'login' %}" id="sign-in-button">
+                    {% if request.user.is_authenticated %}
+                        <div class="sign-in-button">
+                            <img src="{% static 'img/sign-in_button.png' %}" alt="Botão para direcionar ao carrinho">
+                            Bem-vindo, {{ request.user.get_full_name|default:request.user.username }}
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">
+                                    <span>Sair</span>
+                                </button>
+                            </form>
+                            {% comment %} Adicionarbotão para ir as configuração se usuário for superuser {% endcomment %}
+                        </div>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="sign-in-button" id="hover-sign-in-button">
                         <img src="{% static 'img/sign-in_button.png' %}" alt="Botão para direcionar ao carrinho">
                         Entre ou Cadastra-se
                     </a>
+                    {% endif %}
                 </div>
                 
                 <div id="cart-info">

@@ -126,3 +126,12 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configurações de autenticação
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Configuração do Django para gerenciar sessões corretamente
+SESSION_COOKIE_AGE = 86400  # Duração da sessão em segundos (1 dia)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Se True, expira quando o navegador fecha
