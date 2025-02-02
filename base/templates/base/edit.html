@@ -1,8 +1,64 @@
 {% extends 'base/base.html' %}
-
 {% load static %}
 
 {% block content %}
-    {% comment %} Edição de categorias e produtos {% endcomment %}
-    <h2>Editar categorias</h2>
+<div id="product-form-block">
+    <h2>{% if product %}Editar Produto{% else %}Cadastrar Produto{% endif %}</h2>
+
+    <form >
+        {% csrf_token %}
+
+        <!-- Nome do Produto -->
+        <div class="form-field">
+            <label for="product-name">Nome do Produto</label>
+            <input type="text" id="product-name" name="product_name" placeholder="Digite o nome do produto" required>
+        </div>
+
+        <!-- Descrição do Produto -->
+        <div class="form-field">
+            <label for="product-description">Descrição</label>
+            <textarea id="product-description" name="product_description" placeholder="Digite uma breve descrição"></textarea>
+        </div>
+
+        <!-- Preço -->
+        <div class="form-field">
+            <label for="product-price">Preço</label>
+            <input type="number" id="product-price" name="product_price" step="0.01" placeholder="Digite o preço" required>
+        </div>
+
+        <!-- Estoque -->
+        <div class="form-field">
+            <label for="product-stock">Quantidade em Estoque</label>
+            <input type="number" id="product-stock" name="product_stock" placeholder="Digite a quantidade" required>
+        </div>
+
+        <!-- Categoria -->
+        <div class="form-field">
+            <label for="product-category">Categoria</label>
+            <select id="product-category" name="product_category" required>
+                <option value="" disabled selected>Selecione uma categoria</option>
+                <option value="Carne">Carne</option>
+                <option value="Frutas">Frutas</option>
+                <option value="Verduras">Verduras</option>
+                <option value="Legumes">Legumes</option>
+            </select>
+        </div>
+
+        <!-- Imagem do Produto -->
+        <div class="form-field">
+            <label for="product-image">Imagem do Produto</label>
+            <input type="file" id="product-image" name="product_image">
+        </div>
+
+        <!-- Botão de Ação -->
+        <div id="product-form-button">
+            <button type="submit">{% if product %}Atualizar{% else %}Cadastrar{% endif %}</button>
+        </div>
+    </form>
+
+    <!-- Link para voltar -->
+    <div>
+        <a href="#" id="back-to-products">Voltar para lista de produtos</a>
+    </div>
+</div>
 {% endblock %}

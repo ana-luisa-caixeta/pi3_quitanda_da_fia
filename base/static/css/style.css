@@ -231,3 +231,78 @@ h2, h3, .main_label {
 #keep_shopping:hover, .shopping_cart_to_home_page:hover, #finalize_order:hover {
   opacity: 0.8;
 }
+/*edit.html*/
+
+/* Bloco principal do formulário */
+#product-form-block {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Título */
+#product-form-block h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Campos do formulário */
+.form-field {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-field label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Botão */
+#product-form-button button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#product-form-button button:hover {
+    background-color: #45a049;
+}
+
+/* Link de voltar */
+#back-to-products {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+#back-to-products:hover {
+    text-decoration: underline;
+}
