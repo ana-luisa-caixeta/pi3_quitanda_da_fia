@@ -10,7 +10,7 @@ categories = Category.objects.all()
 products = Product.objects.all()
 
 def home(request):
-    return render(request, "base/home.html", {'categories' : categories, 'products': products})
+    return render(request, "base/home.html", {'products': products})
 
 
 @login_required(login_url='login')
@@ -20,7 +20,7 @@ def shopping_cart(request):
 
     if not cart:
         # Se o carrinho não existir, renderizar a página com carrinho vazio
-        return render(request, 'base/shopping_cart.html', {'cart': None, 'items': [], 'categories': categories})
+        return render(request, 'base/shopping_cart.html', {'cart': None, 'items': []})
 
     # Recuperar os itens do carrinho com o método select_related para otimizar o acesso ao produto
     items = cart.items.select_related('product')
@@ -30,14 +30,14 @@ def shopping_cart(request):
     for item in items:
         total += item.product.price * item.quantity  # Multiplicando o preço pelo número de itens
 
-    return render(request, 'base/shopping_cart.html', {'cart': cart, 'items': items, 'total': total, 'categories': categories})
+    return render(request, 'base/shopping_cart.html', {'cart': cart, 'items': items, 'total': total})
 
 
 @login_required(login_url='login')
 def add_to_cart(request, product_id):
     if request.method == "POST":
         quantity = int(request.POST.get('quantity', 1))
-        cart, created = ShoppingCart.objects.get_or_create(user=request.user, deleted_at__isnull=True)
+        cart = ShoppingCart.objects.get_or_create(user=request.user, deleted_at__isnull=True)
 
         # Verifica se o item já existe no carrinho
         item, item_created = CartItem.objects.get_or_create(cart=cart, product_id=product_id)
@@ -67,13 +67,9 @@ def remove_from_cart(request, item_id):
         return redirect('carrinho')
 
 
-def login_page(request):
-    return render(request, "registration/login.html", {'categories' : categories})
-
-
 def cadastro(request):
     if request.method == "GET": 
-        return render(request, "registration/register.html", {'categories' : categories})
+        return render(request, "registration/register.html")
     else:
         username = request.POST.get("username")
         email = request.POST.get("email")
@@ -82,13 +78,13 @@ def cadastro(request):
         user = User.objects.filter(email=email).first()
         if user:
             messages.error(request, "Este email já está cadastrado.")
-            return render(request, "registration/register.html", {'categories': categories})
+            return render(request, "registration/register.html")
 
 
         user = User.objects.filter(username=username).first()
         if user:
             messages.error(request, "Este usuário já está cadastrado.")
-            return render(request, "registration/register.html", {'categories': categories})
+            return render(request, "registration/register.html")
         
         user  = User.objects.create_user(username=username, email=email, password=password)
         user.save()
@@ -116,4 +112,4 @@ def is_superuser(user):
 
 @user_passes_test(is_superuser, login_url='home')  # Redireciona usuários comuns
 def edicao(request):
-    return render(request, "base/edit.html", {'categories' : categories})
+    return render(request, "base/edit.html")

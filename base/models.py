@@ -65,3 +65,26 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name} no carrinho"
+
+
+class OrderInformation(models.Model):
+    PAYMENT_CHOICES = [
+        ('card', 'Cartão'),
+        ('cash', 'Dinheiro')
+    ]
+    
+    DELIVERY_CHOICES = [
+        ('pickup', 'Retirada na loja'),
+        ('delivery', 'Entrega')
+    ]
+
+    name = models.CharField(max_length=255)
+    tel_number = models.CharField(max_length=15)
+    payment = models.CharField(max_length=10, choices=PAYMENT_CHOICES)
+    delivery = models.CharField(max_length=10, choices=DELIVERY_CHOICES)
+    address = models.TextField(blank=True, null=True)  # Pode ser nulo caso seja retirada na loja
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Pedido de {self.name} - R${self.total}"
