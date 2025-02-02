@@ -1,0 +1,27 @@
+#password-reset-container, #password-reset-sent-container {
+    background-color: #264B37;
+    color: #ffffff;
+    font-size: 0.9em;
+    padding: 1em;
+    margin: 1em 0 1em 0;
+    border-radius: 8px;
+}
+
+#password-reset-container h2, #password-reset-sent-container h2 {
+    color: #ffffff
+}
+
+#password-reset-container button, #password-reset-sent-container button {
+    background-color: #81bc4e;
+    border: 1px solid #81bc4e;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 0.5em;
+    border-radius: 8px;
+}
+
+#password-reset-container button:hover, #password-reset-sent-container button:hover {
+    opacity: 0.6;
+}

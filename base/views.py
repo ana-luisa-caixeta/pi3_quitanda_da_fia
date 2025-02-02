@@ -67,7 +67,7 @@ def remove_from_cart(request, item_id):
         return redirect('carrinho')
 
 
-def login(request):
+def login_page(request):
     return render(request, "registration/login.html", {'categories' : categories})
 
 
@@ -93,7 +93,9 @@ def cadastro(request):
         user  = User.objects.create_user(username=username, email=email, password=password)
         user.save()
 
-        return redirect("login")
+        user = authenticate(request, username=username, password=password)
+        login(request, user)
+        return redirect("home")
 
 
 def busca(request):

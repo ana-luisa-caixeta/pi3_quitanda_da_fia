@@ -135,3 +135,6 @@ LOGOUT_REDIRECT_URL = '/'
 # Configuração do Django para gerenciar sessões corretamente
 SESSION_COOKIE_AGE = 86400  # Duração da sessão em segundos (1 dia)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Se True, expira quando o navegador fecha
+
+# Enviar recuperação no terminal
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
