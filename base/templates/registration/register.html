@@ -6,13 +6,19 @@
 <div id="register-block">
     <h2>Cadastro ao sistema</h2>
 
-    <form>
+    <form action="{% url 'cadastro' %}" method="POST">
         {% csrf_token %}
+
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
         
         <!-- Campo Nome -->
         <div class="form-field">
-            <label for="nome">Nome</label>
-            <input type="nome" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+            <label for="username">Nome</label>
+            <input type="nome" id="username" name="username" placeholder="Digite seu nome completo" required>
         </div>
         
         <!-- Campo Email -->
@@ -21,22 +27,10 @@
             <input type="email" id="email" name="email" placeholder="Digite seu email para cadastrar" required>
         </div>
 
-        <!-- Repetir Email -->
-        <div class="form-field">
-            <label for="confirm-email">Confirmar Email</label>
-            <input type="email" id="confirm-email" name="confirm_email" placeholder="Repita o email cadastrado" required>
-        </div>
-
         <!-- Campo Senha -->
         <div class="form-field">
             <label for="password">Senha</label>
             <input type="password" id="password" name="password" placeholder="Digite sua senha de segurança" required>
-        </div>
-
-        <!-- Repetir Senha -->
-        <div class="form-field">
-            <label for="confirm-password">Confirmar Senha</label>
-            <input type="password" id="confirm-password" name="confirm_password" placeholder="Repita a senha informada" required>
         </div>
 
         <!-- Botão de Cadastro -->

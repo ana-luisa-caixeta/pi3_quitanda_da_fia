@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 from .models import Category, Product, ShoppingCart, CartItem
 
 # Create your views here.
@@ -69,7 +72,28 @@ def login(request):
 
 
 def cadastro(request):
-    return render(request, "registration/register.html", {'categories' : categories})
+    if request.method == "GET": 
+        return render(request, "registration/register.html", {'categories' : categories})
+    else:
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+
+        user = User.objects.filter(email=email).first()
+        if user:
+            messages.error(request, "Este email já está cadastrado.")
+            return render(request, "registration/register.html", {'categories': categories})
+
+
+        user = User.objects.filter(username=username).first()
+        if user:
+            messages.error(request, "Este usuário já está cadastrado.")
+            return render(request, "registration/register.html", {'categories': categories})
+        
+        user  = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+
+        return redirect("login")
 
 
 def busca(request):
