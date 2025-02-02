@@ -32,21 +32,23 @@
                 <div>
                     {% if request.user.is_authenticated %}
                         <div class="sign-in-button">
-                            <img src="{% static 'img/sign-in_button.png' %}" alt="Botão para direcionar ao carrinho">
-                            Bem-vindo, {{ request.user.get_full_name|default:request.user.username }}
-                            <form action="{% url 'logout' %}" method="post">
-                                {% csrf_token %}
-                                <button type="submit">
-                                    <span>Sair</span>
-                                </button>
-                            </form>
+                            <img src="{% static 'img/sign-in_button.png' %}" alt="Botão para direcionar ao login">
+                            <div id="sign-in-menu">
+                                Bem-vindo, {{ request.user.get_full_name|default:request.user.username }}
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit">
+                                        <span>Sair</span>
+                                    </button>
+                                </form>
+                            </div>
                             {% comment %} Adicionarbotão para ir as configuração se usuário for superuser {% endcomment %}
                         </div>
                     {% else %}
-                    <a href="{% url 'login' %}" class="sign-in-button" id="hover-sign-in-button">
-                        <img src="{% static 'img/sign-in_button.png' %}" alt="Botão para direcionar ao carrinho">
-                        Entre ou Cadastra-se
-                    </a>
+                        <a href="{% url 'login' %}" class="sign-in-button" id="hover-sign-in-button">
+                            <img src="{% static 'img/sign-in_button.png' %}" alt="Botão para direcionar ao carrinho">
+                            Entre ou Cadastra-se
+                        </a>
                     {% endif %}
                 </div>
                 
@@ -55,6 +57,16 @@
                         <img src="{% static 'img/cart_button.png' %}" alt="Botão para direcionar ao carrinho">
                         Meu Carrinho
                     </a>
+                </div>
+
+                <div id="redirect-edit">
+                    {% if request.user.is_superuser %}
+                        <form action="{% url 'edicao' %}">
+                            <button title="Configurações">
+                                <img src="{% static 'img/icon-configuration.png' %}" alt="Botão para direcionar à configuração">
+                            </button>
+                        </form>
+                    {% endif %}
                 </div>
             </div>
         

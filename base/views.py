@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Category, Product, ShoppingCart, CartItem
 
 # Create your views here.
@@ -83,3 +83,11 @@ def busca(request):
     }
 
     return render(request, "base/search.html", context)
+
+
+def is_superuser(user):
+    return user.is_superuser
+
+@user_passes_test(is_superuser, login_url='home')  # Redireciona usuários comuns
+def edicao(request):
+    return render(request, "base/edit.html", {'categories' : categories})

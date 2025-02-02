@@ -116,6 +116,37 @@ input {
     width: 3em;
 }
 
+#sign-in-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+#sign-in-menu button, #redirect-edit button{
+    cursor: pointer;
+}
+
+#redirect-edit img{
+    width: 2.5em;
+}
+
+#sign-in-menu button, #redirect-edit button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+#redirect-edit button {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+}
+
 /* Customize categories */
 #categories {
     display: flex;
@@ -209,7 +240,7 @@ iframe {
 }
 
 /* Customize logo size */
-#container-footer a:hover, #logo-button-footer:hover, #cart-button:hover, #hover-sign-in-button:hover, #logo-button-header:hover, #whatsapp-icon:hover, #category:hover {
+#container-footer a:hover, #logo-button-footer:hover, #cart-button:hover, #hover-sign-in-button:hover, #logo-button-header:hover, #whatsapp-icon:hover, #category:hover, #sign-in-menu button:hover, #redirect-edit button:hover {
   opacity: 0.6;
 }
 
