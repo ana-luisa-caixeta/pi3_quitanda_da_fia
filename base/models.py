@@ -54,6 +54,11 @@ class ShoppingCart(models.Model):
     def __str__(self):
         return f"Carrinho de {self.user.username}"
     
+    def get_total_price(self):
+        # Calcula o preço total do carrinho somando o preço de todos os itens
+        total = sum(item.product.price * item.quantity for item in self.items.all())
+        return total
+
 
 class CartItem(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -78,6 +83,7 @@ class OrderInformation(models.Model):
         ('delivery', 'Entrega')
     ]
 
+    cart = models.ForeignKey(ShoppingCart, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     tel_number = models.CharField(max_length=15)
     payment = models.CharField(max_length=10, choices=PAYMENT_CHOICES)

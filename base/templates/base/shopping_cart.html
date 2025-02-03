@@ -56,43 +56,64 @@
             {% endif %}
         </div>
 
-        <!-- Right side: order details -->
-        <div class="order-information">
-            <form method="POST" action="{% url 'checkout' %}">
+        <!-- Right side: responsible for showing the form and confirming the order -->
+        <div id="order_information">
+            <form action="{% url 'checkout' %}" method="POST">
                 {% csrf_token %}
-                <label for="name">Nome</label>
-                <input type="text" name="name" id="name" placeholder="Digite seu nome" required>
+                <label class="main_label" for="name">Nome</label>
+                <input type="text" class="input-text-shopping-cart" id="name" name="name" placeholder="Digite seu nome" required>
 
-                <label for="tel_number">Telefone</label>
-                <input type="tel" name="tel_number" id="tel_number" placeholder="(99) 99999-9999" required>
+                <label class="main_label" for="tel_number">Telefone de contato</label>
+                <input type="tel" id="tel_number" name="tel_number" placeholder="(99)99999-9999" required>
 
-                <h3>Forma de pagamento</h3>
-                <div class="payment-options">
-                    <label><input type="radio" name="payment" value="card" required> Cartão</label>
-                    <label><input type="radio" name="payment" value="cash" required> Dinheiro</label>
+                <h3>Tipo de pagamento</h3>
+                <div id="payment">
+                    <div class="payment_info">
+                    <input type="radio" name="payment" id="payment_card" value="card">
+                    <label for="payment_card">Pagamento com cartão</label>
+                    </div>
+
+                    <div class="payment_info">
+                    <input type="radio" name="payment" id="payment_cash" value="cash">
+                    <label for="payment_cash">Pagamento com dinheiro</label>
+                    </div>
                 </div>
 
-                <h3>Entrega</h3>
-                <div class="delivery-options">
-                    <label><input type="radio" name="delivery" value="pickup" required> Retirada na loja</label>
-                    <label><input type="radio" name="delivery" value="delivery" required> Entrega</label>
-                </div>
+                <div id="delivery">
+                    <h3>Informações de entrega</h3>
+                    <div class="delivery_choice">
+                        <input type="radio" name="delivery" id="pickup" value="Retirada">
+                        <label for="pickup">Retirada na loja</label>
+                    </div>
+        
+                    <div class="delivery_choice">
+                        <input type="radio" name="delivery" id="delivery" value="Entrega">
+                        <label for="delivery">Entrega</label>
+                    </div>
 
-                <div class="delivery-address">
-                    <label for="address">Endereço</label>
-                    <input type="text" name="address" id="address" placeholder="Digite o endereço" disabled>
+                    <div>
+                        <input type="text" class="input-text-shopping-cart" name="address" id="address" placeholder="Digite o endereço da entrega">
+                    </div>
                 </div>
-
                 <h2>Resumo da compra</h2>
-                <div class="order-summary">
-                    <p>Subtotal: R$ {{ total|floatformat:2 }}</p>
-                    <p>Entrega: Gratuita</p>
-                    <h3>Total: R$ {{ total|floatformat:2 }}</h3>
+                <div class="elements_side_by_side">
+                    <p>Subtotal</p>
+                    <p>R$ {{ total|floatformat:2 }}</p>
                 </div>
 
-                <div class="actions">
-                    <a href="{% url 'home' %}" class="btn-shopping-cart">Continuar comprando</a>
-                    <button type="submit" class="btn-finalize-order">Finalizar pedido</button>
+                <div class="elements_side_by_side">
+                    <p>Entrega</p>
+                    <p>Gratuita</p>
+                </div>
+
+                <div class="elements_side_by_side">
+                    <h3>Total</h3>
+                    <h3>R$ {{ total|floatformat:2 }}</h3>
+                </div>
+
+                <div class="elements_side_by_side">
+                    <a href="{% url 'home' %}" class="shopping_cart_to_home_page"><p>Continue comprando</p></a>
+                    <button type="submit" id="finalize_order">Finalizar pedido</button>
                 </div>
             </form>
         </div>
