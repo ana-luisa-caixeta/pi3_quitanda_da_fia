@@ -94,3 +94,28 @@ class OrderInformation(models.Model):
 
     def __str__(self):
         return f"Pedido de {self.name} - R${self.total}"
+
+
+"""FAZENDO FUNCIONAR FORM DE ADD PRODUTO"""
+class ProductUm(models.Model): 
+    UNITS = [
+        ("Kg", "Kg"),
+        ("Unidade", "Unidade"),
+    ]
+    
+    CATEGORIES = [
+        ("Carne", "Carne"),
+        ("Frutas", "Frutas"),
+        ("Verduras", "Verduras"),
+        ("Legumes", "Legumes"),
+    ]
+
+    name = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    unit = models.CharField(max_length=20, choices=UNITS)  # 🔹 Usando a constante UNITS
+    category = models.CharField(max_length=20, choices=CATEGORIES)  # 🔹 Usando a constante CATEGORIES
+    image_url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name

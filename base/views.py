@@ -5,7 +5,8 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.utils import timezone
-from .models import Category, Product, ShoppingCart, CartItem, OrderInformation
+from .models import Category, Product, ShoppingCart, CartItem, OrderInformation, ProductUm
+from .forms import ProductForm
 
 # Create your views here.
 categories = Category.objects.all()
@@ -116,8 +117,18 @@ def is_superuser(user):
     return user.is_superuser
 
 @user_passes_test(is_superuser, login_url='home')  # Redireciona usuários comuns
-def edicao(request):
-    return render(request, "base/edit.html")
+def edicao(request, product_id=None):
+    product = get_object_or_404(Product, id=product_id) if product_id else None
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect("home")  # Certifique-se de que essa URL existe
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, "base/edit.html", {"form": form})
 
 
 def generate_whatsapp_message(order):
@@ -189,3 +200,30 @@ def checkout(request):
         return redirect(whatsapp_url)
 
     return render(request, 'base/shopping_cart.html', {'cart': cart})
+
+#Formulario add produto
+
+# Formulário para adicionar produto
+def create_product(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Redireciona para a home após salvar
+    else:
+        form = ProductForm()
+
+    return render(request, "base/edit.html", {"form": form})
+
+def edicao(request, product_id):
+    product = get_object_or_404(ProductUm, id=product_id)
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, "base/edit.html", {"form": form})
+
