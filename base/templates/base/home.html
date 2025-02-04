@@ -22,32 +22,34 @@
     <div id="category_products">
         <!-- Organize the section by categories -->
         {% for category in categories%}
-            <div id="{{ category.name|lower|slugify }}" id="division-by-category">
+            <div id="{{ category.name|lower|slugify }}" class="division-by-category">
                 <h2>{{ category.name }}</h2>
 
                 <!-- Product card construction-->
-                {% for product in products %}
-                    {% if product.category == category %}
-                        <div id="product_card">
-                            <img src="{{ product.image }}" :alt="Nome do produto"/>
+                <div id="product_list">
+                    {% for product in products %}
+                        {% if product.category.id == category.id %}
+                            <div id="product_card">
+                                <img src="{{ product.image }}" :alt="Nome do produto"/>
 
-                            <div id="product_information">
-                                <p>{{ product.name }} - {{ product.unit }}</p>
-                                <p>R${{ product.price }}</p>
+                                <div id="product_information">
+                                    <p>{{ product.name }} - {{ product.unit }}</p>
+                                    <p>R${{ product.price }}</p>
+                                </div>
+
+                                <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                                    {% csrf_token %}
+                                    <button id="add_to_cart" type="submit">
+                                        <div id="cart_component">
+                                            <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras">
+                                            <p>Adicionar</p>
+                                        </div>
+                                    </button>
+                                </form>                            
                             </div>
-
-                            <form method="POST" action="{% url 'add_to_cart' product.id %}">
-                                {% csrf_token %}
-                                <button id="add_to_cart" type="submit">
-                                    <div id="cart_component">
-                                        <img src="{% static 'img/cart.png' %}" alt="Imagem carrinho de compras">
-                                        <p>Adicionar</p>
-                                    </div>
-                                </button>
-                            </form>                            
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
 
                 <!-- This button is responsible for limiting how many products the user can see -->
                 <div id="division_of_categories">
@@ -57,7 +59,5 @@
                 </div>
             </div>
         {% endfor %}
-
-        <!-- Modal para exibir detalhes do produto -->
     </div>
 {% endblock %}

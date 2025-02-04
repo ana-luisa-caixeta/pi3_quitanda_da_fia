@@ -7,8 +7,8 @@
     <div id="product_found">
         <h2>Resultados da Pesquisa: "{{ query }}"</h2>
         <div id="order_products">
-            <div id="product_card" class="product">
-                {% for product in results%}
+            {% for product in results%}
+                <div id="product_card" class="product">
                     <img src="{{ product.image }}" alt="{{ product.name }}">
 
                     <div id="product_information">
@@ -22,8 +22,8 @@
                             <p>Adicionar</p>
                         </div>
                     </button>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 

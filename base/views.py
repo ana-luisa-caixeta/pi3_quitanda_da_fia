@@ -6,13 +6,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.utils import timezone
 from .models import Category, Product, ShoppingCart, CartItem, OrderInformation
-import urllib.parse
 
 # Create your views here.
 categories = Category.objects.all()
 products = Product.objects.all()
 
 def home(request):
+    products = Product.objects.all()
     return render(request, "base/home.html", {'products': products})
 
 
