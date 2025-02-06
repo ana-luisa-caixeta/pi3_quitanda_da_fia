@@ -5,7 +5,7 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.utils import timezone
-from .models import Category, Product, ShoppingCart, CartItem, OrderInformation, ProductUm
+from .models import Category, Product, ShoppingCart, CartItem, OrderInformation
 from .forms import ProductForm
 
 # Create your views here.
@@ -38,14 +38,14 @@ def shopping_cart(request):
 
 
 @login_required(login_url='login')
-def add_to_cart(request, product_id):
+def add_to_cart(request, id):
     if request.method == "POST":
         quantity = int(request.POST.get('quantity', 1))
 
         with transaction.atomic():  # Garante que tudo ocorre sem erros parciais
             cart, created = ShoppingCart.objects.get_or_create(user=request.user, deleted_at__isnull=True)
 
-            product = get_object_or_404(Product, id=product_id)  # Garante que o produto existe
+            product = get_object_or_404(Product, id=id)  # Garante que o produto existe
 
             item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
 
@@ -215,8 +215,8 @@ def create_product(request):
 
     return render(request, "base/edit.html", {"form": form})
 
-def edicao(request, product_id):
-    product = get_object_or_404(ProductUm, id=product_id)
+def edicao(request, id):
+    product = get_object_or_404(Product, id=id)
     if request.method == "POST":
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
@@ -227,3 +227,22 @@ def edicao(request, product_id):
 
     return render(request, "base/edit.html", {"form": form})
 
+
+def buscar_produto_edicao(request):
+    if request.method == "POST":
+        product_name = request.POST.get('product_name').strip()
+        
+        # Busca ignorando maiúsculas e minúsculas
+        product = Product.objects.filter(name__icontains=product_name).first()
+        
+        if product:
+            return redirect('edit_product', id=product.id)  # Redireciona para a edição com o ID do produto
+        
+        # Caso não encontre nenhum produto
+        return render(request, "base/home.html")
+    
+    return render(request, "base/home.html")
+
+
+def admin_config_page(request):
+    return render(request, "base/admin_config_page.html")

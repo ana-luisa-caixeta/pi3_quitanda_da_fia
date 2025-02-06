@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="admin-page">
+    <h2>Página do Admistrador</h2>
+
+    <div id="admin-page-link">
+        <a href="{% url 'create_product' %}" class="admin-page-button"><p>Adicionar novos produtos</p></a>
+    </div>
+    
+    <h3>Buscar Produto para Edição</h3>
+
+    <form method="POST" action="{% url 'buscar_produto_edicao' %}" class="product-search-form">
+        {% csrf_token %}
+        <div>
+            <label for="product_name">Nome do Produto</label>
+            <input type="text" id="product_name" name="product_name" required>
+        </div>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+{% endblock %}

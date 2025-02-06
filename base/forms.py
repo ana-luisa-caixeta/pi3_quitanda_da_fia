@@ -1,7 +1,7 @@
 from django import forms
-from .models import ProductUm
+from .models import Product
 
 class ProductForm(forms.ModelForm):
     class Meta:
-        model = ProductUm
-        fields = ['name', 'description', 'price', 'unit', 'category', 'image_url']
+        model = Product
+        fields = ['name', 'price', 'unit', 'category', 'image']

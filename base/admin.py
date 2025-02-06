@@ -1,11 +1,18 @@
 from django.contrib import admin
-from .models import Category, Product, ProductUm
+from .models import Category, Product, OrderInformation, ShoppingCart, CartItem  # Substitua pelos seus modelos
 
-admin.site.register(Category)
-admin.site.register(Product)
 
-@admin.register(ProductUm)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'id')
+
+
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'unit')  # 🔹 Define colunas visíveis
-    search_fields = ('name', 'category')  # 🔹 Adiciona barra de busca
-    list_filter = ('category', 'unit')  # 🔹 Adiciona filtros laterais
+    list_display = ('name', 'price', 'category')
+
+
+# Registrar modelos
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Product, ProductAdmin)
+admin.site.register(OrderInformation)
+admin.site.register(ShoppingCart)
+admin.site.register(CartItem)

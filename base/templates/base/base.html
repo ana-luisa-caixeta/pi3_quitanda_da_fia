@@ -62,7 +62,7 @@
 
                 <div id="redirect-edit">
                     {% if request.user.is_superuser %}
-                        <form action="{% url 'edicao' %}">
+                        <form action="{% url 'admin_config_page' %}">
                             <button title="Configurações">
                                 <img src="{% static 'img/icon-configuration.png' %}" alt="Botão para direcionar à configuração">
                             </button>

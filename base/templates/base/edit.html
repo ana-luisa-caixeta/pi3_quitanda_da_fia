@@ -5,9 +5,9 @@
 <div id="product-form-block">
     <h2>{% if form.instance.pk %}Editar Produto{% else %}Cadastrar Produto{% endif %}</h2>
 
-    <form method="POST" action="{% url 'create_product' %}">
+    <form method="POST" action="{% if form.instance.pk %}{% url 'edit_product' form.instance.pk %}{% else %}{% url 'create_product' %}{% endif %}">
         {% csrf_token %}
-
+        
         {% if form.errors %}
             <div class="error-message">
                 <ul>
@@ -19,41 +19,36 @@
                 </ul>
             </div>
         {% endif %}
-
+    
         <div class="form-field">
             <label for="id_name">Nome do Produto</label>
             {{ form.name }}
         </div>
-
-        <div class="form-field">
-            <label for="id_description">Descrição</label>
-            {{ form.description }}
-        </div>
-
+    
         <div class="form-field">
             <label for="id_price">Preço</label>
             {{ form.price }}
         </div>
-
+    
         <div class="form-field">
             <label for="id_unit">Unidade</label>
             {{ form.unit }}
         </div>
-
+    
         <div class="form-field">
             <label for="id_category">Categoria</label>
             {{ form.category }}
         </div>
-
+    
         <div class="form-field">
-            <label for="id_image_url">URL da Imagem</label>
-            {{ form.image_url }}
+            <label for="id_image">URL da Imagem</label>
+            {{ form.image }}
         </div>
-
+    
         <div id="product-form-button">
             <button type="submit">{% if form.instance.pk %}Atualizar{% else %}Cadastrar{% endif %}</button>
         </div>
-    </form>
+    </form>    
 
     <div>
         <a href="{% url 'home' %}" id="back-to-products">Voltar para lista de produtos</a>
