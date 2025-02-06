@@ -278,6 +278,16 @@ h2, h3, .main_label {
 }
 
 /* Botão */
+#product-form-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+
 #product-form-button button {
     background-color: #4CAF50;
     color: #fff;
@@ -286,12 +296,27 @@ h2, h3, .main_label {
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px;
     transition: background-color 0.3s ease;
 }
 
 #product-form-button button:hover {
     background-color: #45a049;
+}
+
+#delete-button button {
+    background-color: #c81d1d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#delete-button button:hover{
+    background-color: #c81d1d;
+    opacity: 0.8;
 }
 
 /* Link de voltar */

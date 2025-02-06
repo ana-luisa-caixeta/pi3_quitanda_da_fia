@@ -246,3 +246,12 @@ def buscar_produto_edicao(request):
 
 def admin_config_page(request):
     return render(request, "base/admin_config_page.html")
+
+
+def delete_product(request, id):
+    product = get_object_or_404(Product, id=id)
+    if request.method == "POST":
+        product.delete()
+        messages.success(request, "Produto excluído com sucesso!")
+        return redirect('home')
+    return redirect('edit_product', id=id)

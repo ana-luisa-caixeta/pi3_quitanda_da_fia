@@ -46,7 +46,18 @@
         </div>
     
         <div id="product-form-button">
-            <button type="submit">{% if form.instance.pk %}Atualizar{% else %}Cadastrar{% endif %}</button>
+            <button type="submit">
+                {% if form.instance.pk %}Atualizar{% else %}Cadastrar{% endif %}
+            </button>
+
+            {% if form.instance.pk %}
+            <div id="delete-button">
+                <form method="POST" action="{% url 'delete_product' form.instance.pk %}" onsubmit="return confirm('Tem certeza que deseja excluir este produto?');">
+                    {% csrf_token %}
+                    <button type="submit">Excluir</button>
+                </form>
+            </div>
+            {% endif %}
         </div>
     </form>    
 
