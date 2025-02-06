@@ -343,13 +343,14 @@ h2, h3, .main_label {
 }
 
 /* Títulos da página */
-#admin-page h2, #admin-page h3 {
+#admin-page h2 {
     font-size: 2rem;
     text-align: center;
 }
 
 #admin-page h3 {
     font-size: 1.5rem;
+    text-align: center;
 }
 
 /* Estilo para os botões dentro da página do administrador */
@@ -357,7 +358,7 @@ h2, h3, .main_label {
     display: inline-block;
     background-color: #4CAF50;
     color: white;
-    padding: 0 1em;
+    padding: 0 1em 0 1em;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
@@ -376,7 +377,6 @@ h2, h3, .main_label {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
     width: 100%;
     max-width: 400px;
 }
@@ -413,7 +413,7 @@ h2, h3, .main_label {
 .product-search-form button[type="submit"] {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 25px;
+    padding: 16px 15px;
     border: none;
     border-radius: 5px;
     font-size: 1.1rem;

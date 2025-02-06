@@ -14,6 +14,9 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     edited_by = models.CharField(max_length=100, null=False)
 
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     UNITS = (
